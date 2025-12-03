@@ -290,6 +290,43 @@ const Tables = ({ url }) => {
                   </div>
                 </div>
 
+                {/* Today's Bookings */}
+                {table.todayBookings && table.todayBookings.length > 0 && (
+                  <div className="table-bookings-info">
+                    <div className="bookings-header">
+                      <span className="booking-icon">📅</span>
+                      <span className="booking-title">Today's Bookings ({table.todayBookings.length})</span>
+                    </div>
+                    <div className="bookings-list-mini">
+                      {table.todayBookings.slice(0, 2).map((booking, idx) => (
+                        <div key={idx} className={`booking-mini ${booking.status.toLowerCase()}`}>
+                          <span className="booking-time">{booking.time}</span>
+                          <span className="booking-name">{booking.name}</span>
+                          <span className="booking-guests">{booking.guests}👥</span>
+                        </div>
+                      ))}
+                      {table.todayBookings.length > 2 && (
+                        <span className="more-bookings">+{table.todayBookings.length - 2} more</span>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Upcoming Bookings Count */}
+                {table.upcomingBookingsCount > 0 && (
+                  <div className="upcoming-badge">
+                    <span>📆 {table.upcomingBookingsCount} upcoming booking{table.upcomingBookingsCount > 1 ? 's' : ''}</span>
+                  </div>
+                )}
+
+                {/* Currently Booked Indicator */}
+                {table.isCurrentlyBooked && (
+                  <div className="currently-booked-badge">
+                    <span className="pulse-dot"></span>
+                    <span>Currently in use</span>
+                  </div>
+                )}
+
                 {table.features && table.features.length > 0 && (
                   <div className="table-features">
                     {table.features.slice(0, 3).map((feature, idx) => (

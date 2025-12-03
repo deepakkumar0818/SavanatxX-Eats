@@ -35,11 +35,64 @@ const addTable = async (req, res) => {
     }
 };
 
-// Get all tables (Admin)
+// Get all tables (Admin) with booking info
 const listTables = async (req, res) => {
     try {
         const tables = await tableModel.find({}).sort({ tableNumber: 1 });
-        res.json({ success: true, data: tables });
+        
+        // Get today's bookings for all tables
+        const today = new Date();
+        const startOfDay = new Date(today.setHours(0, 0, 0, 0));
+        const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+        
+        const todayBookings = await bookingModel.find({
+            tableId: { $ne: null },
+            date: { $gte: startOfDay, $lt: endOfDay },
+            status: { $in: ['Pending', 'Confirmed'] }
+        });
+
+        // Also get upcoming bookings (next 7 days)
+        const nextWeek = new Date();
+        nextWeek.setDate(nextWeek.getDate() + 7);
+        
+        const upcomingBookings = await bookingModel.find({
+            tableId: { $ne: null },
+            date: { $gte: new Date(), $lt: nextWeek },
+            status: { $in: ['Pending', 'Confirmed'] }
+        });
+
+        // Attach booking info to each table
+        const tablesWithBookings = tables.map(table => {
+            const tableObj = table.toObject();
+            
+            // Today's bookings for this table
+            tableObj.todayBookings = todayBookings.filter(b => 
+                b.tableId && b.tableId.toString() === table._id.toString()
+            ).map(b => ({
+                _id: b._id,
+                time: b.time,
+                guests: b.guests,
+                name: b.name,
+                status: b.status
+            }));
+            
+            // Upcoming bookings count
+            tableObj.upcomingBookingsCount = upcomingBookings.filter(b => 
+                b.tableId && b.tableId.toString() === table._id.toString()
+            ).length;
+            
+            // Check if table is booked right now (within 2 hours of current time)
+            const now = new Date();
+            const currentHour = now.getHours();
+            tableObj.isCurrentlyBooked = tableObj.todayBookings.some(b => {
+                const bookingHour = parseInt(b.time.split(':')[0]);
+                return Math.abs(currentHour - bookingHour) <= 2;
+            });
+            
+            return tableObj;
+        });
+
+        res.json({ success: true, data: tablesWithBookings });
     } catch (error) {
         console.error("Error fetching tables:", error);
         res.json({ success: false, message: error.message });

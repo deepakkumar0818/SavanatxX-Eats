@@ -1,4 +1,5 @@
 import bookingModel from "../models/bookingModel.js";
+import tableModel from "../models/tableModel.js";
 
 // Create a new booking
 const createBooking = async (req, res) => {
@@ -8,6 +9,24 @@ const createBooking = async (req, res) => {
         // Validate required fields
         if (!name || !email || !phone || !date || !time || !guests) {
             return res.json({ success: false, message: "Please fill all required fields" });
+        }
+
+        // Check if table is already booked for this date/time
+        if (tableId) {
+            const bookingDate = new Date(date);
+            const existingBooking = await bookingModel.findOne({
+                tableId: tableId,
+                date: {
+                    $gte: new Date(bookingDate.setHours(0, 0, 0, 0)),
+                    $lt: new Date(bookingDate.setHours(23, 59, 59, 999))
+                },
+                time: time,
+                status: { $in: ['Pending', 'Confirmed'] }
+            });
+
+            if (existingBooking) {
+                return res.json({ success: false, message: "This table is already booked for the selected date and time" });
+            }
         }
 
         // Check if there are pre-ordered items
@@ -33,6 +52,13 @@ const createBooking = async (req, res) => {
         });
 
         await newBooking.save();
+
+        // Update table status to reserved if table was selected
+        if (tableId) {
+            await tableModel.findByIdAndUpdate(tableId, { status: 'reserved' });
+            console.log(`Table ${tableNumber} marked as reserved`);
+        }
+
         console.log("New booking created:", newBooking._id, tableNumber ? `Table: ${tableNumber}` : '', hasPreOrder ? `with ${preOrderedItems.length} pre-ordered items` : '');
 
         res.json({ 
@@ -68,14 +94,42 @@ const updateBookingStatus = async (req, res) => {
             return res.json({ success: false, message: "Booking ID and status are required" });
         }
 
+        // Get the booking first to check for table
+        const booking = await bookingModel.findById(bookingId);
+        if (!booking) {
+            return res.json({ success: false, message: "Booking not found" });
+        }
+
         const updatedBooking = await bookingModel.findByIdAndUpdate(
             bookingId,
             { status },
             { new: true }
         );
 
-        if (!updatedBooking) {
-            return res.json({ success: false, message: "Booking not found" });
+        // Update table status based on booking status
+        if (booking.tableId) {
+            if (status === 'Completed' || status === 'Cancelled') {
+                // Check if there are other active bookings for this table today
+                const today = new Date();
+                const activeBookings = await bookingModel.find({
+                    tableId: booking.tableId,
+                    _id: { $ne: bookingId },
+                    date: {
+                        $gte: new Date(today.setHours(0, 0, 0, 0)),
+                        $lt: new Date(today.setHours(23, 59, 59, 999))
+                    },
+                    status: { $in: ['Pending', 'Confirmed'] }
+                });
+
+                // If no other active bookings, set table to available
+                if (activeBookings.length === 0) {
+                    await tableModel.findByIdAndUpdate(booking.tableId, { status: 'available' });
+                    console.log(`Table ${booking.tableNumber} marked as available`);
+                }
+            } else if (status === 'Confirmed') {
+                await tableModel.findByIdAndUpdate(booking.tableId, { status: 'reserved' });
+                console.log(`Table ${booking.tableNumber} confirmed as reserved`);
+            }
         }
 
         console.log("Booking status updated:", bookingId, "->", status);
@@ -95,10 +149,31 @@ const deleteBooking = async (req, res) => {
             return res.json({ success: false, message: "Booking ID is required" });
         }
 
+        // Get booking first to check for table
+        const booking = await bookingModel.findById(bookingId);
+        
         const deletedBooking = await bookingModel.findByIdAndDelete(bookingId);
 
         if (!deletedBooking) {
             return res.json({ success: false, message: "Booking not found" });
+        }
+
+        // If booking had a table, check if we should release it
+        if (booking && booking.tableId) {
+            const today = new Date();
+            const activeBookings = await bookingModel.find({
+                tableId: booking.tableId,
+                date: {
+                    $gte: new Date(today.setHours(0, 0, 0, 0)),
+                    $lt: new Date(today.setHours(23, 59, 59, 999))
+                },
+                status: { $in: ['Pending', 'Confirmed'] }
+            });
+
+            if (activeBookings.length === 0) {
+                await tableModel.findByIdAndUpdate(booking.tableId, { status: 'available' });
+                console.log(`Table ${booking.tableNumber} released and marked as available`);
+            }
         }
 
         console.log("Booking deleted:", bookingId);
@@ -203,6 +278,25 @@ const cancelUserBooking = async (req, res) => {
 
         booking.status = 'Cancelled';
         await booking.save();
+
+        // Release the table if one was booked
+        if (booking.tableId) {
+            const today = new Date();
+            const activeBookings = await bookingModel.find({
+                tableId: booking.tableId,
+                _id: { $ne: bookingId },
+                date: {
+                    $gte: new Date(today.setHours(0, 0, 0, 0)),
+                    $lt: new Date(today.setHours(23, 59, 59, 999))
+                },
+                status: { $in: ['Pending', 'Confirmed'] }
+            });
+
+            if (activeBookings.length === 0) {
+                await tableModel.findByIdAndUpdate(booking.tableId, { status: 'available' });
+                console.log(`Table ${booking.tableNumber} released after user cancellation`);
+            }
+        }
 
         console.log("Booking cancelled by user:", bookingId);
         res.json({ success: true, message: "Booking cancelled successfully" });

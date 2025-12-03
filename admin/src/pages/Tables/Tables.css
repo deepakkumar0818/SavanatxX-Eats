@@ -236,6 +236,132 @@
     font-weight: 500;
 }
 
+/* Table Bookings Info */
+.table-bookings-info {
+    background: linear-gradient(135deg, #fef3c7, #fef9c3);
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.bookings-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.booking-icon {
+    font-size: 16px;
+}
+
+.booking-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #92400e;
+}
+
+.bookings-list-mini {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.booking-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: white;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.booking-mini.pending {
+    border-left: 3px solid #f59e0b;
+}
+
+.booking-mini.confirmed {
+    border-left: 3px solid #60b246;
+}
+
+.booking-time {
+    font-weight: 700;
+    color: #1a1a2e;
+    min-width: 65px;
+}
+
+.booking-name {
+    flex: 1;
+    color: #4a4a4a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.booking-guests {
+    color: #6b7280;
+    font-size: 11px;
+}
+
+.more-bookings {
+    font-size: 11px;
+    color: #92400e;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.upcoming-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.currently-booked-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border: 1px solid #fca5a5;
+    color: #b91c1c;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .inactive-badge {
     margin-top: 12px;
     padding: 8px 12px;
