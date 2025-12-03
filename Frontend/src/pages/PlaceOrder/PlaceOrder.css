@@ -1,0 +1,617 @@
+.place-order-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.place-order {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Left Section - Delivery Info */
+.place-order-left {
+    width: 100%;
+}
+
+.section-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+}
+
+.section-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-icon svg {
+    color: white;
+}
+
+.section-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.form-grid {
+    padding: 24px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group.full-width {
+    width: 100%;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e8e8e8;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #e23744;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(226, 55, 68, 0.1);
+}
+
+.input-group input::placeholder {
+    color: #aaa;
+}
+
+.multi-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.multi-fields .input-group {
+    margin-bottom: 0;
+}
+
+/* Right Section */
+.place-order-right {
+    position: sticky;
+    top: 100px;
+}
+
+/* Payment Method Card */
+.payment-method-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.payment-method-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.payment-method-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.change-payment-btn {
+    background: none;
+    border: none;
+    color: #e23744;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+}
+
+.change-payment-btn:hover {
+    text-decoration: underline;
+}
+
+.selected-payment {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f0fff0 0%, #e8f5e9 100%);
+    border: 2px solid #60b246;
+    border-radius: 12px;
+}
+
+.payment-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-icon.cod {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.payment-icon.cod svg {
+    color: #e65100;
+}
+
+.payment-icon.upi {
+    background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+}
+
+.payment-icon.upi svg {
+    color: #3f51b5;
+}
+
+.payment-icon.card {
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+}
+
+.payment-icon.card svg {
+    color: #c2185b;
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.payment-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.payment-note {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Cart Total Card */
+.cart-total-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.cart-total-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-items-preview {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.item-qty {
+    color: #60b246;
+    font-weight: 600;
+    min-width: 30px;
+}
+
+.item-name {
+    flex: 1;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.cart-calculations {
+    margin-bottom: 20px;
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.calc-row .delivery-fee {
+    color: #60b246;
+    font-weight: 500;
+}
+
+.calc-row.total {
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.place-order-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #60b246 0%, #4caf50 100%);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(96, 178, 70, 0.3);
+}
+
+.place-order-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(96, 178, 70, 0.4);
+}
+
+.place-order-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.place-order-btn .btn-amount {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+.place-order-btn .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Trust Indicators */
+.trust-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding-top: 16px;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+}
+
+.trust-item svg {
+    color: #60b246;
+}
+
+/* Order Success Page */
+.order-success-page {
+    max-width: 500px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-animation {
+    margin-bottom: 30px;
+}
+
+.success-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.order-success-page h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 12px;
+}
+
+.order-success-page > p {
+    font-size: 16px;
+    color: #666;
+    margin: 0 0 12px;
+}
+
+.order-id-text {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 24px !important;
+}
+
+.order-id-text strong {
+    color: #e23744;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.payment-success-row .payment-id-value {
+    color: #2e7d32;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.payment-status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.payment-status-badge.paid {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.order-info-box {
+    background: #f8f8f8;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span {
+    font-size: 14px;
+    color: #666;
+}
+
+.info-row strong {
+    font-size: 14px;
+    color: #1a1a2e;
+}
+
+.success-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.track-order-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #e23744 0%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(226, 55, 68, 0.3);
+}
+
+.track-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(226, 55, 68, 0.4);
+}
+
+.back-home-btn {
+    padding: 14px 24px;
+    background: #f5f5f5;
+    color: #333;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-home-btn:hover {
+    background: #eee;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+    .place-order {
+        grid-template-columns: 1fr;
+    }
+
+    .place-order-right {
+        position: static;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .multi-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        padding: 16px 20px;
+    }
+
+    .form-grid {
+        padding: 20px;
+    }
+
+    .order-success-page h1 {
+        font-size: 24px;
+    }
+}
+
+/* Login Prompt Modal */
+.login-prompt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.login-prompt-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+}
+
+.login-prompt-icon {
+    margin-bottom: 20px;
+}
+
+.login-prompt-modal h2 {
+    font-size: 24px;
+    color: #1a1a2e;
+    margin: 0 0 12px;
+}
+
+.login-prompt-modal p {
+    font-size: 15px;
+    color: #666;
+    margin: 0 0 8px;
+    line-height: 1.5;
+}
+
+.login-prompt-modal .note {
+    font-size: 13px;
+    color: #60b246;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.relogin-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #e23744 0%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(226, 55, 68, 0.3);
+}
+
+.relogin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(226, 55, 68, 0.4);
+}

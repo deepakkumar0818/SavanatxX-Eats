@@ -1,0 +1,507 @@
+.home {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Restaurant Info Bar */
+.restaurant-info-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 24px 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 40px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-icon {
+    font-size: 28px;
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1c1c1c;
+}
+
+.info-label {
+    font-size: 13px;
+    color: #7e808c;
+}
+
+.info-divider {
+    width: 1px;
+    height: 40px;
+    background: #e8e8e8;
+}
+
+/* Quick Category Section */
+.quick-category-section {
+    margin-bottom: 40px;
+}
+
+.quick-category-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin-bottom: 20px;
+}
+
+.quick-category-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+}
+
+.quick-category-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.quick-cat-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 2px solid #e8e8e8;
+    border-radius: 30px;
+    background: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    color: #4a4a4a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.quick-cat-btn img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.quick-cat-btn:hover {
+    border-color: #e23744;
+    color: #e23744;
+}
+
+.quick-cat-btn.active {
+    background: #e23744;
+    border-color: #e23744;
+    color: white;
+}
+
+/* Section Header */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1c1c1c;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-icon {
+    font-size: 28px;
+}
+
+.see-all-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #e23744;
+    font-size: 15px;
+    font-weight: 500;
+    transition: gap 0.3s ease;
+}
+
+.see-all-link:hover {
+    gap: 10px;
+}
+
+/* Offers Section */
+.offers-section {
+    margin-bottom: 50px;
+}
+
+.offers-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+}
+
+.offers-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.offer-dish-card {
+    flex-shrink: 0;
+    width: 220px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.offer-dish-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.offer-dish-img {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+}
+
+.offer-dish-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.offer-dish-card:hover .offer-dish-img img {
+    transform: scale(1.1);
+}
+
+.offer-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 12px 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.offer-dish-info {
+    padding: 14px;
+}
+
+.offer-dish-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.offer-dish-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offer-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e23744;
+}
+
+.offer-rating {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+/* Bestsellers Section */
+.bestsellers-section {
+    margin-bottom: 50px;
+}
+
+.bestsellers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Promo Banner */
+.promo-banner-section {
+    margin: 50px 0;
+}
+
+.promo-banner {
+    background: linear-gradient(135deg, #e23744 0%, #ff6b6b 50%, #ee5a24 100%);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.promo-content {
+    position: relative;
+    z-index: 1;
+}
+
+.promo-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.promo-content h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.promo-content p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+}
+
+.promo-btn {
+    padding: 14px 32px;
+    background: white;
+    color: #e23744;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.promo-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.promo-images {
+    display: flex;
+    gap: 20px;
+    font-size: 60px;
+    opacity: 0.8;
+}
+
+/* Features Section */
+.features-section {
+    margin-bottom: 50px;
+}
+
+.features-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1c1c1c;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+}
+
+.feature-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    font-size: 13px;
+    color: #7e808c;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    .restaurant-info-bar {
+        gap: 24px;
+        padding: 20px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .restaurant-info-bar {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-around;
+    }
+
+    .info-divider {
+        display: none;
+    }
+
+    .info-item {
+        width: 45%;
+        justify-content: center;
+    }
+
+    .section-header h2 {
+        font-size: 20px;
+    }
+
+    .bestsellers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+    }
+
+    .promo-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .promo-content h3 {
+        font-size: 26px;
+    }
+
+    .promo-images {
+        margin-top: 20px;
+        font-size: 40px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .feature-card {
+        padding: 20px 16px;
+    }
+
+    .feature-icon {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .restaurant-info-bar {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .info-item {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0 20px;
+    }
+
+    .info-icon {
+        font-size: 24px;
+    }
+
+    .info-value {
+        font-size: 16px;
+    }
+
+    .quick-category-section h2 {
+        font-size: 20px;
+    }
+
+    .quick-cat-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .quick-cat-btn img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .offer-dish-card {
+        width: 180px;
+    }
+
+    .offer-dish-img {
+        height: 120px;
+    }
+
+    .bestsellers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

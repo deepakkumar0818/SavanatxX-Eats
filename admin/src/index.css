@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+  --primary: #e23744;
+  --primary-light: #ff6b6b;
+  --primary-gradient: linear-gradient(135deg, #e23744 0%, #ff6b6b 100%);
+  --dark: #1a1a2e;
+  --dark-light: #2d2d44;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --success: #60b246;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --sidebar-width: 260px;
+  --navbar-height: 70px;
+  --border-radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--gray-200);
+}
+
+/* Main App Layout */
+.app-container {
+  min-height: 100vh;
+}
+
+.app-content {
+  display: flex;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 30px;
+  min-height: calc(100vh - var(--navbar-height));
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+}
+
+/* Utility Classes */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-500);
+}
+
+/* Page Headers */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Outfit', sans-serif;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 15px rgba(226, 55, 68, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(226, 55, 68, 0.4);
+}
+
+.btn-secondary {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+
+.btn-secondary:hover {
+  background: var(--gray-200);
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  :root {
+    --sidebar-width: 80px;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --sidebar-width: 60px;
+  }
+  
+  .main-content {
+    padding: 15px;
+  }
+}
